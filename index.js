@@ -1,8 +1,65 @@
-// Game Board
+//Game Board Object
 
-let gameBoard = () => {
+const GameBoard = (() => {
+  let gameBoard = ["", "", "", "", "", "", "", "", ""];
+
+  const createGameBoard = () => {
+    let boardHTML = document.querySelector(".game-board");
+    gameBoard.forEach((item, index) => {
+      let square = document.createElement("div");
+      square.id = index;
+      square.classList.add("board-square");
+      square.addEventListener("click", Game.markSquare, { once: true });
+      boardHTML.appendChild(square);
+    });
+  };
+  return { createGameBoard };
+})();
+
+const createPlayer = (name, mark) => {
+  return {
+    name,
+    mark,
+  };
+};
+
+// Game Object
+const Game = (() => {
+  let gameOver = false;
+  let currentPlayer;
+  let players;
+
+  const start = () => {
+    players = [
+      createPlayer(document.querySelector("#player-1").value, "X"),
+      createPlayer(document.querySelector("#player-2").value, "O"),
+    ];
+    currentPlayer = players[0];
+    console.log(players);
+    GameBoard.createGameBoard();
+  };
+
+  const markSquare = (event) => {
+    event.target.innerHTML = currentPlayer.mark;
+    changePlayer();
+  };
+
+  const changePlayer = () => {
+    return currentPlayer === players[0]
+      ? (currentPlayer = players[1])
+      : (currentPlayer = players[0]);
+  };
+  return { start, markSquare };
+})();
+
+const startButton = document.querySelector(".start-game");
+startButton.addEventListener("click", () => {
+  Game.start();
+});
+
+/*
+const GameBoard = () => {
   let gameBoardArr = ["", "", "", "", "", "", "", "", ""];
-  let winningCombination = [[1, 2, 3]];
 
   const startButton = document.querySelector(".start-game");
   startButton.addEventListener("click", newGame);
@@ -18,20 +75,24 @@ let gameBoard = () => {
       let cell = document.createElement("div");
       cell.classList.add("board-square");
       cell.id = index;
-      cell.addEventListener("click", () => {
-        if (playerX === true) {
-          cell.innerHTML = "X";
-          playerX = false;
-          playerO = true;
-        } else if (playerO === true) {
-          cell.innerHTML = "O";
-          playerO = false;
-          playerX = true;
-        }
-      });
+      cell.addEventListener(
+        "click",
+        () => {
+          if (playerX === true) {
+            cell.innerHTML = "X";
+            playerX = false;
+            playerO = true;
+          } else if (playerO === true) {
+            cell.innerHTML = "O";
+            playerO = false;
+            playerX = true;
+          }
+        },
+        { once: true }
+      );
       boardHTML.appendChild(cell);
     });
   }
 };
-
-gameBoard();
+GameBoard();
+*/
