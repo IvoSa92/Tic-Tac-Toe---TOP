@@ -1,4 +1,5 @@
 const startButton = document.querySelector(".start-game");
+
 startButton.addEventListener("click", () => {
   Game.start();
   startButton.disabled = true;
@@ -41,7 +42,7 @@ const GameBoard = (() => {
       (gameBoard[0] === "X" && gameBoard[4] === "X" && gameBoard[8] === "X") ||
       (gameBoard[2] === "X" && gameBoard[4] === "X" && gameBoard[6] === "X")
     ) {
-      console.log("win");
+      Game.winningMessage();
     } else if (
       (gameBoard[0] === "O" && gameBoard[1] === "O" && gameBoard[2] === "O") ||
       (gameBoard[3] === "O" && gameBoard[4] === "O" && gameBoard[5] === "O") ||
@@ -68,15 +69,8 @@ const GameBoard = (() => {
     boardHTML.innerHTML = "";
     for (let i = 0; i < gameBoard.length; i++) {
       gameBoard[i] = "";
-      let square = document.createElement("div");
-      square.id = `square-${i}`;
-      square.classList.add("board-square");
-      square.addEventListener("click", (event) => {
-        Game.markSquare(event);
-        actualBoard(event);
-      });
-      boardHTML.appendChild(square);
     }
+    createGameBoard();
   };
 
   return { createGameBoard };
@@ -117,45 +111,12 @@ const Game = (() => {
       : (currentPlayer = players[0]);
   };
 
-  return { start, markSquare };
+  const winningMessage = () => {
+    let winnerDiv = document.querySelector(".message");
+    let winnerText = document.querySelector(".winning-message");
+    winnerDiv.style.display = "flex";
+    winnerText.textContent = `Congratulation ${currentPlayer.name} you WON the Game`;
+  };
+
+  return { start, markSquare, winningMessage };
 })();
-
-/*
-const GameBoard = () => {
-  let gameBoardArr = ["", "", "", "", "", "", "", "", ""];
-
-  const startButton = document.querySelector(".start-game");
-  startButton.addEventListener("click", newGame);
-
-  function newGame() {
-    let playerX = true;
-    let playerO = false;
-
-    const boardHTML = document.querySelector(".game-board");
-    boardHTML.innerHTML = "";
-
-    gameBoardArr.forEach((item, index) => {
-      let cell = document.createElement("div");
-      cell.classList.add("board-square");
-      cell.id = index;
-      cell.addEventListener(
-        "click",
-        () => {
-          if (playerX === true) {
-            cell.innerHTML = "X";
-            playerX = false;
-            playerO = true;
-          } else if (playerO === true) {
-            cell.innerHTML = "O";
-            playerO = false;
-            playerX = true;
-          }
-        },
-        { once: true }
-      );
-      boardHTML.appendChild(cell);
-    });
-  }
-};
-GameBoard();
-*/
