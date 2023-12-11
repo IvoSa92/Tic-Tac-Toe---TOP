@@ -1,3 +1,9 @@
+const startButton = document.querySelector(".start-game");
+startButton.addEventListener("click", () => {
+  Game.start();
+  startButton.disabled = true;
+});
+
 //Game Board Object
 
 const GameBoard = (() => {
@@ -47,6 +53,29 @@ const GameBoard = (() => {
       (gameBoard[2] === "O" && gameBoard[4] === "O" && gameBoard[6] === "O")
     ) {
       console.log("O win");
+    } else if (gameBoard.every((cell) => cell !== "")) {
+      console.log("its a tie!");
+    }
+  };
+
+  const restartGame = document.querySelector(".restart-game");
+  restartGame.addEventListener("click", () => {
+    refreshGameBoard();
+  });
+
+  const refreshGameBoard = () => {
+    let boardHTML = document.querySelector(".game-board");
+    boardHTML.innerHTML = "";
+    for (let i = 0; i < gameBoard.length; i++) {
+      gameBoard[i] = "";
+      let square = document.createElement("div");
+      square.id = `square-${i}`;
+      square.classList.add("board-square");
+      square.addEventListener("click", (event) => {
+        Game.markSquare(event);
+        actualBoard(event);
+      });
+      boardHTML.appendChild(square);
     }
   };
 
@@ -62,7 +91,6 @@ const createPlayer = (name, mark) => {
 
 // Game Object
 const Game = (() => {
-  let gameOver = false;
   let currentPlayer;
   let players;
 
@@ -91,11 +119,6 @@ const Game = (() => {
 
   return { start, markSquare };
 })();
-
-const startButton = document.querySelector(".start-game");
-startButton.addEventListener("click", () => {
-  Game.start();
-});
 
 /*
 const GameBoard = () => {
