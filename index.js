@@ -53,7 +53,7 @@ const GameBoard = (() => {
       (gameBoard[0] === "O" && gameBoard[4] === "O" && gameBoard[8] === "O") ||
       (gameBoard[2] === "O" && gameBoard[4] === "O" && gameBoard[6] === "O")
     ) {
-      console.log("O win");
+      Game.winningMessage();
     } else if (gameBoard.every((cell) => cell !== "")) {
       console.log("its a tie!");
     }
@@ -115,7 +115,12 @@ const Game = (() => {
     let winnerDiv = document.querySelector(".message");
     let winnerText = document.querySelector(".winning-message");
     winnerDiv.style.display = "flex";
+    winnerText.style.display = "flex";
     winnerText.textContent = `Congratulation ${currentPlayer.name} you WON the Game`;
+    winnerDiv.addEventListener("click", () => {
+      winnerDiv.style.display = "none";
+      winnerText.style.display = "none";
+    });
   };
 
   return { start, markSquare, winningMessage };
