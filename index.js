@@ -7,12 +7,27 @@ const GameBoard = (() => {
     let boardHTML = document.querySelector(".game-board");
     gameBoard.forEach((item, index) => {
       let square = document.createElement("div");
-      square.id = index;
+      square.id = `square-${index}`;
       square.classList.add("board-square");
-      square.addEventListener("click", Game.markSquare, { once: true });
+      square.addEventListener(
+        "click",
+        (event) => {
+          Game.markSquare(event);
+          actualBoard(event);
+        },
+        { once: true }
+      );
       boardHTML.appendChild(square);
     });
   };
+
+  const actualBoard = () => {
+    for (i = 0; i < gameBoard.length; i++) {
+      gameBoard[i] = document.querySelector(`#square-${i}`).innerHTML;
+    }
+    console.log(gameBoard);
+  };
+
   return { createGameBoard };
 })();
 
@@ -41,6 +56,8 @@ const Game = (() => {
 
   const markSquare = (event) => {
     event.target.innerHTML = currentPlayer.mark;
+    console.log(event.target.id);
+
     changePlayer();
   };
 
@@ -49,6 +66,7 @@ const Game = (() => {
       ? (currentPlayer = players[1])
       : (currentPlayer = players[0]);
   };
+
   return { start, markSquare };
 })();
 
