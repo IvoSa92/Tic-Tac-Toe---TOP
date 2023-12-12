@@ -5,19 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400&family=Caveat&family=Dancing+Script&family=Dekko&family=Lato&family=Lilita+One&family=Montserrat&family=Roboto&family=Rubik+Bubbles&family=Space+Grotesk:wght@600&family=Ubuntu&display=swap"
+      rel="stylesheet" />
   </head>
   <body>
-    <button class="start-game">Start Game</button>
-    <button class="restart-game">Restart Game</button>
-    <div class="controls">
-      <input type="text" id="player-1" placeholder="Player 1 Name" />
-      <input type="text" id="player-2" placeholder="Player 2 Name" />
-    </div>
-    <div class="game-board"></div>
+    <div class="container">
+      <h1 class="game-title">Tickle Tac Toe</h1>
+      <div class="starting-buttons">
+        <button class="start-game">Start Game</button>
+        <button class="restart-game">Restart Game</button>
+      </div>
 
-    <div class="message"></div>
-    <h1 class="winning-message"></h1>
-    <div class="cover"></div>
+      <div class="controls">
+        <input type="text" id="player-1" placeholder="Player 1 Name" />
+        <input type="text" id="player-2" placeholder="Player 2 Name" />
+      </div>
+      <div class="game-board"></div>
+
+      <div class="message"></div>
+      <h1 class="winning-message"></h1>
+      <div class="cover"></div>
+    </div>
+
     <script src="./index.js"></script>
   </body>
 </html>

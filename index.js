@@ -12,6 +12,7 @@ const GameBoard = (() => {
 
   const createGameBoard = () => {
     let boardHTML = document.querySelector(".game-board");
+    boardHTML.style.backgroundColor = "#9dc08b";
     gameBoard.forEach((item, index) => {
       let square = document.createElement("div");
       square.id = `square-${index}`;
@@ -116,7 +117,7 @@ const Game = (() => {
     let winnerText = document.querySelector(".winning-message");
     winnerDiv.style.display = "flex";
     winnerText.style.display = "flex";
-    winnerText.textContent = `Congratulation ${currentPlayer.name} you WON the Game`;
+    winnerText.textContent = `Congratulation ${currentPlayer.name}  you WON`;
     winnerDiv.addEventListener("click", () => {
       winnerDiv.style.display = "none";
       winnerText.style.display = "none";

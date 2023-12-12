@@ -1,15 +1,22 @@
-body {
+.container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #edf1d6;
+  border: solid 2px black;
+}
+
+.game-title {
+  font-family: Rubik Bubbles;
+  font-size: 7rem;
+  color: #40513b;
 }
 
 .game-board {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-
   width: 500px;
   height: 500px;
 }
@@ -20,21 +27,123 @@ body {
   justify-content: center;
   width: 100%;
   height: 100%;
-  border: solid 2px black;
 }
 
-.fourth,
-.fifth,
-.sixth {
+#square-3,
+#square-4,
+#square-5 {
   border-bottom: solid 3px black;
   border-top: solid 3px black;
+  border-color: #40513b;
 }
 
-.second,
-.fifth,
-.eighth {
+#square-1,
+#square-4,
+#square-7 {
   border-left: solid 3px black;
   border-right: solid 3px black;
+  border-color: #40513b;
+}
+
+.starting-buttons {
+  margin: 1rem;
+}
+.start-game {
+  margin: 1rem;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px 14px 18px;
+  color: #fff;
+  background-color: #15883e;
+  height: 48px;
+}
+.start-game:hover {
+  background-color: #1db954;
+}
+
+.start-game:disabled {
+  background-color: grey;
+}
+.start-game:active,
+.restart-game:active {
+  transform: scale(0.95);
+}
+
+.restart-game {
+  margin: 1rem;
+
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px 14px 18px;
+  color: #fff;
+  background-color: #f25f5f;
+  height: 48px;
+}
+.restart-game:hover {
+  background-color: #e71212;
+}
+
+.controls {
+  margin-left: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#player-1,
+#player-2 {
+  margin-bottom: 1rem;
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  appearance: none;
+  width: 40%;
+  position: relative;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+#player-1:hover,
+#player-2:hover {
+  box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+}
+
+#player-1:focus,
+#player-2:focus {
+  background: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
 }
 
 .message {
