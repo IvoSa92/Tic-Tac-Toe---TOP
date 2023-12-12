@@ -1,10 +1,17 @@
 const startButton = document.querySelector(".start-game");
+const player1 = document.querySelector("#player-1");
+const player2 = document.querySelector("#player-2");
 
 startButton.addEventListener("click", () => {
   Game.start();
   startButton.disabled = true;
 });
 
+document.addEventListener("keydown", (event) => {
+  if (player1.value != "" && player2.value != "" && event.keyCode === 13) {
+    startButton.click();
+  }
+});
 //Game Board Object
 
 const GameBoard = (() => {
