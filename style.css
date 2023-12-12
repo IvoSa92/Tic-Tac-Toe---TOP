@@ -154,29 +154,37 @@
 
 .message {
   display: none;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 15%;
-  left: 15%;
-  height: 70vh;
-  width: 70vw;
+  top: 10%;
+  left: 10%;
+  height: 80vh;
+  width: 80vw;
   background-color: black;
-  opacity: 0.5;
+  opacity: 0.8;
   z-index: 1;
+  border-radius: 20px;
 }
 
 .winning-message {
   position: absolute;
+  top: 40%;
+  font-family: monospace;
   font-size: 3rem;
   color: black;
   z-index: 2;
+  color: #edf1d6;
 }
 
 .cover {
   display: none;
+  background-color: #40513b;
 }
 
 #screenName {
   font-size: 2rem;
+  line-height: 3rem;
   margin: 3rem;
   font-family: roboto;
   color: #40513b;

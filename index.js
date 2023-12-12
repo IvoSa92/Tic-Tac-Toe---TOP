@@ -6,9 +6,16 @@ const name_board = document.querySelector(".name_board");
 
 // Starting Game:
 
-startButton.addEventListener("click", () => {
-  Game.start();
-  startButton.disabled = true;
+startButton.addEventListener("click", (event) => {
+  if (player1Input.value != "" && player2Input.value != "") {
+    Game.start();
+    startButton.disabled = true;
+  } else {
+    player1Input.classList.add("input-alert");
+    player1Input.placeholder = "Your Name pls 🥸";
+    player2Input.classList.add("input-alert");
+    player2Input.placeholder = "Another name pls 🥸";
+  }
 });
 
 document.addEventListener("keydown", (event) => {
@@ -149,7 +156,7 @@ const Game = (() => {
     let winnerText = document.querySelector(".winning-message");
     winnerDiv.style.display = "flex";
     winnerText.style.display = "flex";
-    winnerText.textContent = `Congratulation ${currentPlayer.name}  you WON`;
+    winnerText.textContent = `Congratulation ${currentPlayer.name}  you WON 🥳`;
     winnerDiv.addEventListener("click", () => {
       winnerDiv.style.display = "none";
       winnerText.style.display = "none";
