@@ -1,6 +1,10 @@
 const startButton = document.querySelector(".start-game");
-const player1 = document.querySelector("#player-1");
-const player2 = document.querySelector("#player-2");
+const player1Input = document.querySelector("#player-1");
+const player2Input = document.querySelector("#player-2");
+const container = document.querySelector(".container");
+const name_board = document.querySelector(".name_board");
+
+// Starting Game:
 
 startButton.addEventListener("click", () => {
   Game.start();
@@ -8,10 +12,16 @@ startButton.addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (player1.value != "" && player2.value != "" && event.keyCode === 13) {
+  if (
+    player1Input.value != "" &&
+    player2Input.value != "" &&
+    event.key === "Enter"
+  ) {
+    event.preventDefault();
     startButton.click();
   }
 });
+
 //Game Board Object
 
 const GameBoard = (() => {
@@ -102,7 +112,11 @@ const Game = (() => {
       createPlayer(document.querySelector("#player-2").value, "O"),
     ];
     currentPlayer = players[0];
-    console.log(players);
+    const screenName1 = document.createElement("h2");
+    const gameBoard = document.querySelector(".game-board");
+    screenName1.textContent = players[0].name;
+    name_board.insertBefore(screenName1, gameBoard);
+
     GameBoard.createGameBoard();
   };
 

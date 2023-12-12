@@ -21,6 +21,11 @@
   height: 500px;
 }
 
+.name_board {
+  display: flex;
+  flex-direction: row;
+}
+
 .board-square {
   display: flex;
   align-items: center;
