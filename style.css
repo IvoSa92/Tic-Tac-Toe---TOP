@@ -19,6 +19,7 @@
   grid-template-rows: 1fr 1fr 1fr;
   width: 500px;
   height: 500px;
+  margin-bottom: 3rem;
 }
 
 .name_board {
@@ -172,4 +173,12 @@
 
 .cover {
   display: none;
+}
+
+#screenName {
+  font-size: 2rem;
+  margin: 3rem;
+  font-family: roboto;
+  color: #40513b;
+  text-align: center;
 }

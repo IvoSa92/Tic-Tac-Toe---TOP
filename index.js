@@ -88,6 +88,7 @@ const GameBoard = (() => {
     for (let i = 0; i < gameBoard.length; i++) {
       gameBoard[i] = "";
     }
+
     createGameBoard();
   };
 
@@ -112,12 +113,22 @@ const Game = (() => {
       createPlayer(document.querySelector("#player-2").value, "O"),
     ];
     currentPlayer = players[0];
-    const screenName1 = document.createElement("h2");
-    const gameBoard = document.querySelector(".game-board");
-    screenName1.textContent = players[0].name;
-    name_board.insertBefore(screenName1, gameBoard);
-
     GameBoard.createGameBoard();
+    screenNames();
+  };
+
+  const screenNames = () => {
+    const gameBoard = document.querySelector(".game-board");
+    const screenName1 = document.createElement("h2");
+    const screenName2 = document.createElement("h2");
+    screenName1.innerHTML = `Player 1: <br>${players[0].name}`;
+    screenName2.innerHTML = `Player 1: <br>${players[1].name}`;
+    screenName1.id = "screenName";
+    screenName2.id = "screenName";
+    name_board.insertBefore(screenName1, gameBoard);
+    name_board.appendChild(screenName2);
+    player1Input.value = "";
+    player2Input.value = "";
   };
 
   const markSquare = (event) => {
@@ -145,5 +156,5 @@ const Game = (() => {
     });
   };
 
-  return { start, markSquare, winningMessage };
+  return { start, markSquare, winningMessage, screenNames };
 })();
