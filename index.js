@@ -128,19 +128,26 @@ const Game = (() => {
     const gameBoard = document.querySelector(".game-board");
     const screenName1 = document.createElement("h2");
     const screenName2 = document.createElement("h2");
-    screenName1.innerHTML = `Player 1: <br>${players[0].name}`;
-    screenName2.innerHTML = `Player 1: <br>${players[1].name}`;
+    screenName1.innerHTML = `Player O: <br>${players[0].name}`;
+    screenName2.innerHTML = `Player X: <br>${players[1].name}`;
     screenName1.id = "screenName";
     screenName2.id = "screenName";
     name_board.insertBefore(screenName1, gameBoard);
     name_board.appendChild(screenName2);
     player1Input.value = "";
     player2Input.value = "";
+    player1Input.style.display = "none";
+    player2Input.style.display = "none";
   };
 
   const markSquare = (event) => {
     event.target.innerHTML = currentPlayer.mark;
-    console.log(event.target.id);
+
+    if (currentPlayer.mark === "X") {
+      event.target.style.color = "#FEFAE0";
+    } else if (currentPlayer.mark === "O") {
+      event.target.style.color = "#000000";
+    }
 
     changePlayer();
   };
