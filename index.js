@@ -33,7 +33,8 @@ document.addEventListener("keydown", (event) => {
 
 const GameBoard = (() => {
   let gameBoard = ["", "", "", "", "", "", "", "", ""];
-
+  let playerXScore = ""; // HIER gehts weiter Brudi
+  let playerOScore = "";
   const createGameBoard = () => {
     let boardHTML = document.querySelector(".game-board");
     boardHTML.style.backgroundColor = "#9dc08b";

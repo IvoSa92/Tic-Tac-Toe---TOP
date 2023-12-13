@@ -118,9 +118,13 @@
 }
 
 .controls {
-  margin-left: 0.9rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin-left: 2rem;
   align-items: center;
+  justify-content: center;
+
   gap: 15px;
 }
 #player-1,
@@ -130,7 +134,7 @@
   border: 0;
   background: rgba(0, 0, 0, 0);
   appearance: none;
-  width: 40%;
+  width: 70%;
   position: relative;
   border-radius: 3px;
   padding: 9px 12px;
@@ -152,6 +156,12 @@
   background: #fff;
   outline: 0;
   box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+}
+
+.score {
+  margin-left: 1rem;
+  font-family: monospace;
+  font-size: 1rem;
 }
 
 .message {
