@@ -33,10 +33,12 @@ document.addEventListener("keydown", (event) => {
 
 const GameBoard = (() => {
   let gameBoard = ["", "", "", "", "", "", "", "", ""];
-  let playerXScore = ""; // HIER gehts weiter Brudi
-  let playerOScore = "";
+  let playerXScore = document.createElement("p");
+  let playerOScore = document.createElement("p");
+  let addingScoreX = "";
+  let addingScoreO = "";
+  let boardHTML = document.querySelector(".game-board");
   const createGameBoard = () => {
-    let boardHTML = document.querySelector(".game-board");
     boardHTML.style.backgroundColor = "#9dc08b";
     gameBoard.forEach((item, index) => {
       let square = document.createElement("div");
@@ -68,6 +70,9 @@ const GameBoard = (() => {
       (gameBoard[0] === "X" && gameBoard[4] === "X" && gameBoard[8] === "X") ||
       (gameBoard[2] === "X" && gameBoard[4] === "X" && gameBoard[6] === "X")
     ) {
+      addingScoreX = parseInt(addingScoreX + 1);
+      playerXScore.innerHTML = `Score:<br> ${addingScoreX}`;
+      scoring();
       Game.winningMessage();
     } else if (
       (gameBoard[0] === "O" && gameBoard[1] === "O" && gameBoard[2] === "O") ||
@@ -79,10 +84,19 @@ const GameBoard = (() => {
       (gameBoard[0] === "O" && gameBoard[4] === "O" && gameBoard[8] === "O") ||
       (gameBoard[2] === "O" && gameBoard[4] === "O" && gameBoard[6] === "O")
     ) {
+      addingScoreO = parseInt(addingScoreO + 1);
+      playerOScore.innerHTML = `Score <br> ${addingScoreO}`;
+      scoring();
       Game.winningMessage();
     } else if (gameBoard.every((cell) => cell !== "")) {
       console.log("its a tie!");
     }
+  };
+  const scoring = () => {
+    playerOScore.classList.add("score");
+    playerXScore.classList.add("score");
+    name_board.insertBefore(playerOScore, boardHTML);
+    name_board.appendChild(playerXScore);
   };
 
   const restartGame = document.querySelector(".restart-game");

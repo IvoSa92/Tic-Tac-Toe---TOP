@@ -159,9 +159,13 @@
 }
 
 .score {
-  margin-left: 1rem;
+  color: #c91414d9;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48px;
+  margin-right: 2rem;
   font-family: monospace;
-  font-size: 1rem;
+  font-size: 2rem;
 }
 
 .message {
