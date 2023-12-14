@@ -38,6 +38,7 @@ const GameBoard = (() => {
   let addingScoreX = "";
   let addingScoreO = "";
   let boardHTML = document.querySelector(".game-board");
+
   const createGameBoard = () => {
     boardHTML.style.backgroundColor = "#9dc08b";
     gameBoard.forEach((item, index) => {
@@ -89,7 +90,7 @@ const GameBoard = (() => {
       scoring();
       Game.winningMessage();
     } else if (gameBoard.every((cell) => cell !== "")) {
-      console.log("its a tie!");
+      Game.tieGame();
     }
   };
   const scoring = () => {
@@ -178,12 +179,24 @@ const Game = (() => {
     let winnerText = document.querySelector(".winning-message");
     winnerDiv.style.display = "flex";
     winnerText.style.display = "flex";
-    winnerText.textContent = `Congratulation ${currentPlayer.name}  you WON 🥳`;
+    winnerText.textContent = `Congratulations ${currentPlayer.name} you WON 🥳`;
     winnerDiv.addEventListener("click", () => {
       winnerDiv.style.display = "none";
       winnerText.style.display = "none";
     });
   };
 
-  return { start, markSquare, winningMessage, screenNames };
+  const tieGame = () => {
+    let winnerDiv = document.querySelector(".message");
+    let winnerText = document.querySelector(".winning-message");
+    winnerDiv.style.display = "flex";
+    winnerText.style.display = "flex";
+    winnerText.textContent = `It´s a tie, play again!`;
+    winnerDiv.addEventListener("click", () => {
+      winnerDiv.style.display = "none";
+      winnerText.style.display = "none";
+    });
+  };
+
+  return { start, markSquare, winningMessage, screenNames, tieGame };
 })();
