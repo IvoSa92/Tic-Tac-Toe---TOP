@@ -86,7 +86,7 @@ const GameBoard = (() => {
       (gameBoard[2] === "O" && gameBoard[4] === "O" && gameBoard[6] === "O")
     ) {
       addingScoreO = parseInt(addingScoreO + 1);
-      playerOScore.innerHTML = `Score <br> ${addingScoreO}`;
+      playerOScore.innerHTML = `Score: <br> ${addingScoreO}`;
       scoring();
       Game.winningMessage();
     } else if (gameBoard.every((cell) => cell !== "")) {
